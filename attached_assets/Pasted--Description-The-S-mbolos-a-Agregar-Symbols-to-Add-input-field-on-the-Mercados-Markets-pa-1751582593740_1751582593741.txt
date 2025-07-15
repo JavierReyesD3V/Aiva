@@ -1,0 +1,51 @@
+(Description):
+
+The "Símbolos a Agregar" (Symbols to Add) input field on the "Mercados" (Markets) page exhibits three main issues:
+
+Input Visibility: The text entered by the user is not visible within the field, making it difficult to confirm what is being typed.
+
+Character Validation: The field accepts and processes invalid characters, including special characters and emojis, when it should only allow market symbol characters (letters, and sometimes numbers as per market conventions).
+
+No Character Limit: The field allows excessively long strings of characters to be entered, which could lead to performance issues or unexpected behavior. This combination of issues could lead to malformed data or potential vulnerabilities.
+
+(Steps to Reproduce):
+
+Navigate to the "Mercados" (Markets) section: 
+https://aivatrade.com//market-analysis
+
+Locate the "Símbolos a Agregar" (Symbols to Add) input field.
+
+To reproduce "Input Visibility": 
+     1. Type any characters (e.g., APPL) into the field. 
+     2. Observe that the typed text is not visible.
+
+To reproduce "Character Validation": 
+     1. Enter a string containing special characters, emojis, or non-alphanumeric characters (e.g., !@#,AAPL,😊,€£¥,GOOG,"'). 
+     2. Click the "Agregar" (Add) button.
+     3. Observe how these invalid characters are handled in the "Lista de Seguimiento Actual". (e.g., !@# might appear, which shouldn't be a valid symbol).
+
+To reproduce "No Character Limit": 
+     1. Enter an extremely long string of characters (e.g., paste a paragraph of text, or use a very                                            long test string like : AAPL,GOOG,MSFT,AMZN ). 
+     2. Click the "Agregar" (Add) button.
+     3. Observe if the application slows down, crashes, or if the very long string is accepted and displayed.
+
+(Expected Result):
+
+The text typed into the "Símbolos a Agregar" field should be clearly visible to the user.
+
+The "Símbolos a Agregar" field should only accept valid market symbol characters (typically alphanumeric, e.g., A-Z, 0 - 9).
+
+An error message should appear for invalid characters, or they should be filtered out/rejected upon submission.
+
+The field should have a defined character limit appropriate for market symbols, preventing excessively long inputs.
+
+(Actual Result):
+
+The text entered into the "Símbolos a Agregar" field is not displayed.
+
+The field allows entry and submission of special characters and emojis.
+
+The field accepts excessively long strings of characters without any apparent limit, and these long strings can be submitted.
+
+These invalid characters and/or excessively long strings are then displayed in the "Lista de Seguimiento Actual", indicating a lack of proper validation and length control.
+

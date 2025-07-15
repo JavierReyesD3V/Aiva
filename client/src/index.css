@@ -1,0 +1,695 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Complete CSS Reset */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Prevent horizontal overflow and improve mobile experience */
+html {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent horizontal scrolling on all elements */
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Fix mobile viewport issues */
+.mobile-safe {
+  overflow-x: hidden;
+  width: 100vw;
+  max-width: 100%;
+}
+
+/* Responsive button styles */
+.btn-responsive {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .btn-responsive {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* Card responsive margins */
+.card-responsive {
+  margin: 0.75rem;
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .card-responsive {
+    margin: 1rem;
+    padding: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .card-responsive {
+    margin: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+/* Table responsive wrapper */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 0.5rem;
+}
+
+.table-responsive table {
+  min-width: 500px;
+  width: 100%;
+}
+
+/* Grid responsive improvements */
+.grid-responsive {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .grid-responsive {
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  word-wrap: break-word;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-wrap: break-word;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  word-wrap: break-word;
+}
+
+/* Safe area utilities for mobile devices */
+@supports (padding: max(0px)) {
+  .safe-area-inset-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+  
+  .safe-area-inset-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  
+  .safe-area-inset-left {
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+  
+  .safe-area-inset-right {
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+/* Smooth transitions for theme switching - restore original speeds */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+:root {
+  /* Dark theme colors based on the purple gradient design */
+  --background: linear-gradient(135deg, hsl(265, 89%, 8%) 0%, hsl(285, 70%, 20%) 50%, hsl(300, 50%, 12%) 100%);
+  --background-solid: hsl(265, 89%, 8%);
+  --foreground: hsl(0, 0%, 95%);
+  --muted: hsl(265, 40%, 15%);
+  --muted-foreground: hsl(265, 15%, 75%);
+  --popover: hsl(265, 60%, 12%);
+  --popover-foreground: hsl(0, 0%, 95%);
+  --card: hsl(265, 40%, 15%);
+  --card-foreground: hsl(0, 0%, 95%);
+  --border: hsl(265, 30%, 30%);
+  --input: hsl(265, 40%, 15%);
+  --primary: hsl(315, 100%, 50%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(265, 40%, 20%);
+  --secondary-foreground: hsl(0, 0%, 95%);
+  --accent: hsl(285, 70%, 25%);
+  --accent-foreground: hsl(0, 0%, 95%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --ring: hsl(315, 100%, 50%);
+  --radius: 0.75rem;
+  --chart-1: hsl(315, 100%, 50%);
+  --chart-2: hsl(142, 76%, 45%);
+  --chart-3: hsl(0, 84%, 60%);
+  --chart-4: hsl(45, 93%, 55%);
+  --chart-5: hsl(285, 70%, 50%);
+  
+  /* Trading specific colors */
+  --profit: hsl(142, 76%, 45%);
+  --loss: hsl(0, 84%, 65%);
+  --dark-card: hsl(265, 40%, 15%);
+  --dark-hover: hsl(265, 40%, 20%);
+  --sidebar-gradient: linear-gradient(180deg, hsl(265, 60%, 12%) 0%, hsl(285, 50%, 15%) 100%);
+  --card-gradient: linear-gradient(135deg, hsl(265, 40%, 15%) 0%, hsl(285, 30%, 18%) 100%);
+  --purple-light: hsl(265, 15%, 80%);
+  --purple: hsl(265, 30%, 35%);
+}
+
+.dark {
+  --background: hsl(222, 84%, 4.9%);
+  --foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217, 32.6%, 17.5%);
+  --muted-foreground: hsl(215, 20.2%, 65.1%);
+  --popover: hsl(222, 84%, 4.9%);
+  --popover-foreground: hsl(210, 40%, 98%);
+  --card: hsl(222, 84%, 4.9%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --border: hsl(217, 32.6%, 17.5%);
+  --input: hsl(217, 32.6%, 17.5%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(222, 84%, 4.9%);
+  --secondary: hsl(217, 32.6%, 17.5%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --accent: hsl(217, 32.6%, 17.5%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(212, 95%, 83%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased text-foreground;
+    background: var(--background);
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .profit {
+    color: var(--profit);
+  }
+  
+  .loss {
+    color: var(--loss);
+  }
+  
+  .bg-profit {
+    background-color: var(--profit);
+  }
+  
+  .bg-loss {
+    background-color: var(--loss);
+  }
+  
+  .border-profit {
+    border-color: var(--profit);
+  }
+  
+  .border-loss {
+    border-color: var(--loss);
+  }
+  
+  .text-profit {
+    color: var(--profit);
+  }
+  
+  .text-loss {
+    color: var(--loss);
+  }
+  
+  .bg-dark-card {
+    background-color: var(--dark-card);
+  }
+  
+  .bg-dark-hover {
+    background-color: var(--dark-hover);
+  }
+  
+  .bg-gradient-dark {
+    background: var(--background);
+  }
+  
+  .bg-sidebar-gradient {
+    background: var(--sidebar-gradient);
+  }
+  
+  .bg-card-gradient {
+    background: var(--card-gradient);
+  }
+  
+  .border-purple {
+    border-color: var(--border);
+  }
+  
+  .text-white {
+    color: hsl(0, 0%, 95%);
+  }
+  
+  .text-purple-light {
+    color: hsl(265, 15%, 80%);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Achievement animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.achievement-enter {
+  animation: slideIn 0.3s ease-out;
+}
+
+.achievement-exit {
+  animation: slideOut 0.3s ease-in;
+}
+
+/* Calendar hover effects */
+.calendar-day:hover {
+  background-color: var(--dark-hover);
+}
+
+.calendar-day.has-trades {
+  cursor: pointer;
+}
+
+.calendar-day.today {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Purple theme utility classes */
+.bg-gradient-dark {
+  background: var(--background);
+}
+
+.bg-card-gradient {
+  background: var(--card-gradient);
+}
+
+.text-purple-light {
+  color: var(--purple-light);
+}
+
+.border-purple {
+  border-color: var(--purple);
+}
+
+/* Modal enhancements for purple theme */
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content-purple {
+  background: linear-gradient(135deg, 
+    hsl(265, 40%, 12%) 0%, 
+    hsl(285, 50%, 15%) 50%, 
+    hsl(265, 40%, 12%) 100%);
+  border: 1px solid hsl(265, 30%, 25%);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+/* Global modal styling for purple theme consistency */
+[data-radix-popper-content-wrapper] {
+  z-index: 50;
+}
+
+[role="dialog"] {
+  background: linear-gradient(135deg, 
+    rgb(17, 24, 39) 0%, 
+    rgb(88, 28, 135) 50%, 
+    rgb(17, 24, 39) 100%) !important;
+  border: 1px solid rgb(147, 51, 234) !important;
+}
+
+/* Ensure proper text contrast in all modals - but preserve inline styles for dynamic colors */
+[role="dialog"] .text-white:not([style*="color"]) {
+  color: #ffffff !important;
+}
+
+[role="dialog"] .text-purple-300:not([style*="color"]) {
+  color: #d8b4fe !important;
+}
+
+[role="dialog"] .text-purple-400:not([style*="color"]) {
+  color: #c084fc !important;
+}
+
+[role="dialog"] .text-gray-200:not([style*="color"]) {
+  color: #e5e7eb !important;
+}
+
+[role="dialog"] .text-emerald-400:not([style*="color"]) {
+  color: #34d399 !important;
+}
+
+[role="dialog"] .text-red-400:not([style*="color"]) {
+  color: #f87171 !important;
+}
+
+/* Trading specific colors with proper contrast */
+.profit-text {
+  color: #10b981 !important;
+}
+
+.loss-text {
+  color: #ef4444 !important;
+}
+
+/* Ensure modal buttons maintain proper styling */
+[role="dialog"] button:not([style*="color"]) {
+  color: inherit;
+}
+
+[role="dialog"] .bg-green-600:not([style*="color"]) {
+  background-color: rgba(34, 197, 94, 0.2) !important;
+  color: #34d399 !important;
+}
+
+[role="dialog"] .bg-red-600:not([style*="color"]) {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  color: #f87171 !important;
+}
+
+/* Ensure all dialog titles are white */
+[role="dialog"] h2:not([style*="color"]),
+[role="dialog"] h3:not([style*="color"]) {
+  color: white !important;
+}
+
+/* Ensure all dialog descriptions have proper purple color - but preserve inline styles */
+[role="dialog"] p:not([style*="color"]) {
+  color: rgb(196, 181, 253) !important;
+}
+
+/* Enhanced mobile experience optimizations */
+@media (max-width: 768px) {
+  /* Better scrolling and touch handling */
+  body, html {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+  }
+
+  /* Larger touch targets for better accessibility */
+  button, [role="button"], input, select, textarea, .btn, a {
+    min-height: 48px !important;
+    min-width: 48px !important;
+    touch-action: manipulation;
+    cursor: pointer;
+    /* Prevent text selection on buttons */
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Optimize text for mobile reading */
+  body {
+    font-size: 16px !important; /* Prevent iOS zoom */
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Restore original animation speeds - mobile optimizations should not affect animation timing */
+
+  /* Reduce visual complexity for performance */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(1px) !important;
+  }
+  
+  .backdrop-blur-md {
+    backdrop-filter: blur(2px) !important;
+  }
+
+  /* Mobile-optimized spacing */
+  .p-3, .p-4, .p-6 {
+    padding: 12px !important;
+  }
+
+  .space-y-4 > * + * {
+    margin-top: 12px !important;
+  }
+
+  .space-y-6 > * + * {
+    margin-top: 16px !important;
+  }
+
+  /* Better grid spacing on mobile */
+  .gap-3, .gap-4, .gap-6 {
+    gap: 12px !important;
+  }
+
+  /* Card optimizations for mobile */
+  .card {
+    margin-bottom: 8px !important;
+    border-radius: 12px !important;
+  }
+
+  /* Table responsive behavior */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    max-width: calc(100vw - 16px);
+  }
+
+  /* Better form experience on mobile */
+  input[type="text"], input[type="number"], input[type="email"], select, textarea {
+    font-size: 16px !important; /* Prevent iOS zoom */
+    padding: 12px !important;
+    border-radius: 8px !important;
+  }
+
+  /* Optimize header for mobile */
+  .flex-col.space-y-4 {
+    gap: 8px !important;
+  }
+
+  /* Better modal experience on mobile */
+  [role="dialog"] {
+    margin: 8px !important;
+    max-height: calc(100vh - 16px) !important;
+    max-width: calc(100vw - 16px) !important;
+  }
+
+  /* Improve sidebar for mobile */
+  .md\\:w-64 {
+    width: 100% !important;
+  }
+
+  /* Better navigation for mobile */
+  .lg\\:flex-row {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  /* Optimize text sizes for mobile */
+  .text-2xl {
+    font-size: 1.4rem !important;
+  }
+
+  .text-xl {
+    font-size: 1.2rem !important;
+  }
+
+  /* Performance-optimized gradients */
+  .bg-gradient-to-br, .bg-gradient-dark {
+    background-attachment: local;
+  }
+
+  /* Prevent horizontal scroll */
+  .overflow-x-hidden {
+    overflow-x: hidden !important;
+  }
+
+  /* Better chart responsiveness */
+  .recharts-wrapper {
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  /* Fix overlapping tabs text on mobile */
+  [role="tablist"] {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  [role="tab"] {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    padding: 8px 12px !important;
+    font-size: 14px !important;
+    min-width: auto !important;
+  }
+
+  /* Tab panels spacing */
+  [role="tabpanel"] {
+    margin-top: 8px !important;
+  }
+
+  /* Fix user dropdown menu buttons on mobile */
+  .user-dropdown-menu {
+    width: 100% !important;
+    max-width: calc(100vw - 32px) !important;
+  }
+
+  .user-dropdown-menu button {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    padding: 12px 16px !important;
+    min-height: 48px !important;
+  }
+
+  /* Safe area for devices with notch/dynamic island */
+  .dashboard-safe-area {
+    padding-top: max(16px, env(safe-area-inset-top)) !important;
+    padding-left: max(16px, env(safe-area-inset-left)) !important;
+    padding-right: max(16px, env(safe-area-inset-right)) !important;
+  }
+
+  /* Remove top spacing on mobile dashboard while maintaining safe area */
+  .dashboard-content-mobile {
+    padding-top: 8px !important;
+  }
+}

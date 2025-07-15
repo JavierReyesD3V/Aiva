@@ -1,0 +1,47 @@
+The "Report History" section, intended to display a list of generated reports, remains empty even after a report has been successfully generated and downloaded. This prevents users from accessing past reports directly from the application and confirms a data persistence issue for generated reports.
+
+
+(Steps to Reproduce):
+
+Navigate to the "Reportes" (Reports) section: aivatrade.com/reports
+
+In the "Report Configuration" section, select a date range (e.g., "Last 7 Days" or manually enter "Start Date: 07/01/2025" and "End Date: 07/07/2025").
+
+Click the "Generate Report" button.
+
+Observe the loading spinner ("Generating...") and then the "Reporte de Trading Generado" notification in the bottom right corner.
+
+An .html file should be downloaded and when you click on it you should be able to view it in a new window.
+
+Return to the "Reportes" section in the original tab.
+
+Click on the "Report History" button/tab at the top right of the "Reportes" page.
+
+(Expected Result):
+
+After a report is successfully generated and downloaded, an entry for that report should appear in the "Report History" section.
+
+This entry should include details such as the report name, date, and possibly a link to view or download it again.
+
+The "Report History" section should act as a persistent log of all previously generated reports.
+
+(Actual Result):
+
+Despite successfully generating and downloading a report, the "Report History" section displays the message "No reports generated yet" and remains empty.
+
+There is no record or list of any generated reports in this section.
+
+(Evidence):
+
+
+(Additional Notes):
+
+This bug represents a critical data persistence failure for generated reports.
+
+Users cannot easily review or re-access historical reports within the application, severely limiting the utility of the reporting feature.
+
+The current implementation forces users to re-generate reports or rely on external downloads, which is inefficient.
+
+High Impact on Usability: It forces the user into an inefficient workflow (manual downloading and saving or regenerating). This significantly degrades the user experience for a feature that will likely be used repeatedly for reference.
+
+Affects Trust: If reports aren't saved, what else isn't being saved? It could create distrust in the application's reliability.
